@@ -3,9 +3,12 @@
     [Name]     NVARCHAR (50) NULL,
     [Distance] FLOAT (53)    NOT NULL,
     [RaceId]   INT           NOT NULL,
+    [PointNum] INT           CONSTRAINT [DF_Checkpoints_PointNum] DEFAULT ((1)) NOT NULL,
     CONSTRAINT [PK_Checkpoints] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Checkpoints_Racings] FOREIGN KEY ([RaceId]) REFERENCES [dbo].[Racings] ([Id])
 );
+
+
 
 
 GO
