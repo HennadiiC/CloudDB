@@ -60,6 +60,7 @@
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="Storage\" />
+    <Folder Include="Migrations" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompare.scmp" />
@@ -79,5 +80,8 @@
     <Build Include="Storage\psCheckpointById.sql" />
     <Build Include="Storage\PS_RACER_BY_ID.sql" />
     <Build Include="dbo\Tables\CheckpointPasses.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Migrations\3.1 PostDeployment. Update values in PreviousCheckPoinId.sql" />
   </ItemGroup>
 </Project>
