@@ -1,0 +1,4 @@
+﻿CREATE PARTITION FUNCTION [pfCheckpointId](INT)
+    AS RANGE
+    FOR VALUES (250, 500, 750, 1000);
+

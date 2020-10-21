@@ -1,0 +1,4 @@
+﻿CREATE PARTITION SCHEME [psCheckpointById]
+    AS PARTITION [pfCheckpointId]
+    TO ([PRIMARY], [PRIMARY], [PRIMARY], [PRIMARY], [PRIMARY], [PRIMARY]);
+
