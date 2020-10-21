@@ -20,6 +20,6 @@ BEGIN
 				where RacerId = @racerId 
 	)
 
-	SELECT DATEDIFF(S, @startTime, @endCheckPointTime)
+	SELECT DATEDIFF(MINUTE, @startTime, @endCheckPointTime)
 
 END
