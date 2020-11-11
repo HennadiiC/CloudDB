@@ -61,6 +61,8 @@
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="Storage\" />
     <Folder Include="Migrations" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\User Defined Types\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompare.scmp" />
@@ -82,6 +84,21 @@
     <Build Include="dbo\Tables\CheckpointPasses.sql" />
     <Build Include="dbo\Tables\Seasons.sql" />
     <Build Include="dbo\Tables\Countries.sql" />
+    <Build Include="dbo\Functions\reduce3.sql" />
+    <Build Include="dbo\Functions\reduce2.sql" />
+    <Build Include="dbo\Functions\reduce1.sql" />
+    <Build Include="dbo\Functions\map3.sql" />
+    <Build Include="dbo\Functions\map2.sql" />
+    <Build Include="dbo\Functions\map1.sql" />
+    <Build Include="dbo\Stored Procedures\_Query3_MR.sql" />
+    <Build Include="dbo\Stored Procedures\_Query3.sql" />
+    <Build Include="dbo\Stored Procedures\_Query2_MR.sql" />
+    <Build Include="dbo\Stored Procedures\_Query2.sql" />
+    <Build Include="dbo\Stored Procedures\_Query1_MR.sql" />
+    <Build Include="dbo\Stored Procedures\_Query1_1.sql" />
+    <Build Include="dbo\User Defined Types\table3.sql" />
+    <Build Include="dbo\User Defined Types\table2.sql" />
+    <Build Include="dbo\User Defined Types\table1.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Migrations\3.1 PostDeployment. Update values in PreviousCheckPoinId.sql" />

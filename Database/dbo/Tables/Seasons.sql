@@ -1,6 +1,8 @@
 ﻿CREATE TABLE [dbo].[Seasons] (
-    [Id]   INT          NOT NULL,
+    [Id]   INT          IDENTITY (1, 1) NOT NULL,
     [Name] VARCHAR (50) NOT NULL,
     CONSTRAINT [PK_Seasons] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 
