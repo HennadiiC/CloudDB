@@ -1,6 +1,4 @@
-using System;
-
-namespace RacingSite.Models
+namespace RacingSite.Models.Errors
 {
     public class ErrorViewModel
     {
