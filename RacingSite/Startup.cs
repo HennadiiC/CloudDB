@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RacingSite.Hubs;
+using RacingSite.Repositories;
 
 namespace RacingSite
 {
@@ -20,6 +21,8 @@ namespace RacingSite
         {
             services.AddSignalR();
             services.AddControllersWithViews();
+
+            services.AddSingleton<IRacerBuffer, RaceBuffer>();
         }
 
 
