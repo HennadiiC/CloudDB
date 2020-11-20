@@ -1,3 +1,36 @@
-﻿@model object
+﻿@using RacingSite.Hubs
+@model object
+
+@section Scripts {
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/signalr.js"></script>
+    
+    <script>
+        let connection = new signalR.HubConnectionBuilder()
+            .withUrl("/@HubConstants.RaceHub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
+            .configureLogging(signalR.LogLevel.Error)
+            .build();
+
+        connection.on('@HubConstants.OnCheckpointPassed', data => {
+            var displayMessagesDiv = $("#DisplayMessages");
+            displayMessagesDiv.html(displayMessagesDiv.html() + data.p2);
+        });
+
+        connection.start().then(() => console.log("Connected"));
+
+        function sendMessage() {
+            let msg = $("#txtMessage").val();
+            connection.invoke('send', msg);
+        }
+    </script>
+}
 
 Real time
+
+<div class="container">
+    <input type="text" id="txtMessage" />
+    <input type="button" id="sendMessage" value="Send" onclick="sendMessage();" />
+ 
+    <div id="DisplayMessages"></div>
+ 
+</div>

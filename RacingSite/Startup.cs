@@ -48,7 +48,7 @@ namespace RacingSite
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapHub<RaceHub>("raceHub");
+                endpoints.MapHub<RaceHub>(HubConstants.RaceHub);
             });
         }
     }

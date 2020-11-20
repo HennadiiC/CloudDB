@@ -5,9 +5,9 @@ namespace RacingSite.Hubs
 {
     public class RaceHub : Hub
     {
-        public Task NotifyAboutCheckpointPassing()
+        public Task NotifyAboutCheckpointPassing(string v)
         {
-            return Clients.All.SendAsync("OnCheckpointPassed", new { p1 = 17, p2 = "XYZ" });
+            return Clients.All.SendAsync(HubConstants.OnCheckpointPassed, new { p1 = 17, p2 = v });
         }
     }
 }
