@@ -23,6 +23,7 @@ namespace RacingSite
             services.AddControllersWithViews();
 
             services.AddSingleton<IRacerBuffer, RaceBuffer>();
+            services.AddSingleton<IMessageListener, MessageListener>();
         }
 
 

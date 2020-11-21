@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Http;
 using Core;
-using Dapper;
 using Newtonsoft.Json;
 
 namespace RaceFiller
@@ -12,14 +9,18 @@ namespace RaceFiller
     class Program
     {
         private static readonly string BaseUrl = "https://localhost:44379/";
+        //private static readonly string BaseUrl = "https://racing.azurewebsites.net/";
+
         private static Random Rnd { get; } = new Random(2020);
+
+        private static QueueService QueueService { get; } = new QueueService();
 
         static void Main(string[] args)
         {
             var race = new Race
             {
                 Id = 1,
-                Name = "Race 1 from console",
+                Name = "Race 1 from console 2",
                 Checkpoints = new[]
                 {
                     new Checkpoint
@@ -41,9 +42,16 @@ namespace RaceFiller
             };
 
             Initialize(race, racers);
-            return;
-            //var racers = FillRacersInfo(20);
-            //FillSeasonsInfo(racers, 4, 25, 500);
+
+            var cpp = new CheckpointPassing
+            {
+                Id = 6,
+                RacerId = racers[0].Id,
+                CheckpointId = race.Checkpoints[0].Id,
+                Time = DateTime.Now,
+            };
+
+            AddCheckpointPassing(cpp);
         }
 
         private static void Initialize(Race race, Racer[] racers)
@@ -53,13 +61,11 @@ namespace RaceFiller
 
             using var client = new HttpClient();
             using var res = client.PutAsync(url, new StringContent(contentString)).Result;
-            using var content = res.Content;
+        }
 
-            var data = content.ReadAsStringAsync().Result;
-            if (data != null)
-            {
-                Console.WriteLine(data);
-            }
+        private static void AddCheckpointPassing(CheckpointPassing checkpointPassing)
+        {
+            QueueService.SendMessage(JsonConvert.SerializeObject(checkpointPassing));
         }
 
         static int[] FillRacersInfo(int racersCount)
