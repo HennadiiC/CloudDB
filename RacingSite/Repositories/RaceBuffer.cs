@@ -33,7 +33,7 @@ namespace RacingSite.Repositories
             {
                 lock (_lock)
                 {
-                    return _currentStates.Values.ToList();
+                    return _currentStates.Values.OrderBy(s => s.TimeInRace).ToList();
                 }
             }
         }

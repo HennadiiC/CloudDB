@@ -67,7 +67,35 @@ namespace RacingSite.Controllers
             });
             _hubContext.Clients.All.SendAsync(HubConstants.OnCheckpointPassed, _buffer.RacersCurrentStates);
 
+            _buffer.AddCheckpointPassing(new CheckpointPassing
+            {
+                Id = 7,
+                RacerId = racers[1].Id,
+                CheckpointId = race.Checkpoints[0].Id,
+                Time = DateTime.Now,
+            });
+            _hubContext.Clients.All.SendAsync(HubConstants.OnCheckpointPassed, _buffer.RacersCurrentStates);
+
+
+
             Thread.Sleep(5 * 1000);
+
+
+
+            _buffer.AddCheckpointPassing(new CheckpointPassing
+            {
+                Id = 7,
+                RacerId = racers[1].Id,
+                CheckpointId = race.Checkpoints[1].Id,
+                Time = DateTime.Now,
+            });
+            _hubContext.Clients.All.SendAsync(HubConstants.OnCheckpointPassed, _buffer.RacersCurrentStates);
+
+
+
+
+            Thread.Sleep(1 * 1000);
+
 
             _buffer.AddCheckpointPassing(new CheckpointPassing
             {

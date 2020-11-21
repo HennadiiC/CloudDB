@@ -6,6 +6,8 @@
     <script src="~/js/signalr.js"></script>
 
     <script>
+        const tableId = "racers-info";
+
         let connection = new signalR.HubConnectionBuilder()
             .withUrl("/@HubConstants.RaceHub",
                 { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
@@ -17,37 +19,87 @@
         connection.start().then(() => console.log("Connected"));
 
         function onRaceStart(race) {
-            console.log(race);
+            removeTable();
             $('#race-title').text(`Real time. You are watching race '${race.name}'`);
-            let table = createTable();
-            table.appendTo('#dynamicTable');
         }
 
         function onCheckpointPassed(data) {
-            console.log(data);
+            removeTable();
+            createTable(data, tableId).appendTo('#dynamicTable');
         }
 
-        function createTable() {
-            var table = $('<table>');
+        function removeTable() {
+            $(`#${tableId}`).remove();
+        }
+
+        function createTable(data, tableId) {
+            var table = $('<table>').attr("id", tableId);
             table.append('<thead>').children('thead').append('<tr />').children('tr')
-                .append('<th>A</th><th>B</th><th>C</th><th>D</th>');
+                .append('<th>Racer</th>')
+                .append('<th>Start</th>')
+                .append('<th>Last passed checkpoint</th>')
+                .append('<th>Last passed checkpoint time</th>')
+                .append('<th>Time in race</th>');
 
             var $tbody = table.append('<tbody />').children('tbody');
 
-            $tbody.append('<tr />').children('tr:last')
-                .append("<td>val 1</td>")
-                .append("<td>val 2</td>")
-                .append("<td>val 3</td>")
-                .append("<td>val 4</td>");
+            for (var i = 0; i < data.length; i++) {
+                let info = data[i];
+                $tbody.append('<tr />').children('tr:last')
+                    .append(`<td>${info.racer.name}</td>`)
+                    .append(`<td>${changeTimeFormat(info.start)}</td>`)
+                    .append(`<td>${info.passedCheckpoint.name}</td>`)
+                    .append(`<td>${changeTimeFormat(info.checkpointPassedTime)}</td>`)
+                    .append(`<td>${timeSpanToString(info.timeInRace)}</td>`);
+            }
 
             return table;
+        }
+
+        function changeTimeFormat(time) {
+            let date = new Date(time);
+            return date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() 
+        }
+
+        function timeSpanToString(timeSpan) {
+            return `${timeSpan.minutes} m, ${timeSpan.seconds} s, ${timeSpan.milliseconds} ms`;
         }
 
     </script>
 }
 
-<h1 id="race-title"> </h1>
+<h1 id="race-title">No races now</h1>
 
 <div id="dynamicTable">
 
 </div>
+
+<style>
+    #racers-info {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #racers-info td, 
+    #racers-info th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #racers-info tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #racers-info tr:hover {
+        background-color: #ddd;
+    }
+
+    #racers-info th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
