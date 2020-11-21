@@ -1,6 +1,6 @@
-﻿namespace RacingSite.Core
+﻿namespace Core
 {
-    public class Racer
+    public class Checkpoint
     {
         public int Id { get; set; }
 

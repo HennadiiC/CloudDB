@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using RacingSite.Core;
+using Core;
 
 namespace RacingSite.Repositories
 {

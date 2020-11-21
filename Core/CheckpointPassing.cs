@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RacingSite.Core
+namespace Core
 {
     public class CheckpointPassing
     {
