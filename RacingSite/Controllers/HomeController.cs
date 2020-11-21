@@ -1,8 +1,12 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using Core;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
 using RacingSite.Hubs;
 using RacingSite.Repositories;
 
@@ -108,6 +112,17 @@ namespace RacingSite.Controllers
 
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPut("init")]
+        public async Task Initialize()
+        {
+            var body = (await new StreamReader(Request.Body).ReadToEndAsync()).Split('&');
+            var race = JsonConvert.DeserializeObject<Race>(body[0]);
+            var racers = JsonConvert.DeserializeObject<Racer[]>(body[1]);
+
+            await _hubContext.Clients.All.SendAsync(HubConstants.OnRaceInit, race);
+            _buffer.Initialize(race, racers);
         }
     }
 }
