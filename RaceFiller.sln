@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceFiller", "RaceFiller\Ra
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{3D614B06-7499-4092-9B9B-9A462B15963E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RacingSite", "RacingSite\RacingSite.csproj", "{44566B38-D308-4708-92F5-18C272A88C39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RacingSite", "RacingSite\RacingSite.csproj", "{44566B38-D308-4708-92F5-18C272A88C39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{E020C54B-9B78-40EB-B118-E2D9F96F516E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{44566B38-D308-4708-92F5-18C272A88C39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44566B38-D308-4708-92F5-18C272A88C39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44566B38-D308-4708-92F5-18C272A88C39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E020C54B-9B78-40EB-B118-E2D9F96F516E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E020C54B-9B78-40EB-B118-E2D9F96F516E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E020C54B-9B78-40EB-B118-E2D9F96F516E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E020C54B-9B78-40EB-B118-E2D9F96F516E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

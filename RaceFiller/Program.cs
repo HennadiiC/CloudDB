@@ -17,6 +17,8 @@ namespace RaceFiller
 
         static void Main(string[] args)
         {
+            var s = new QueueService();
+            s.SendMessage("bla");
             return;
             var racers = FillRacersInfo(20);
             FillSeasonsInfo(racers, 4, 25, 500);
